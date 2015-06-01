@@ -3,8 +3,17 @@ set -e
 
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
-if ! [ $# -eq 1 ]
-then
-    echo "Usage: \$0 [start|restart|graceful|graceful-stop|stop|threaddump]"
-    exit 1
+SYSTEM_NSQ_DIR="/opt/nsq-0.3.5"
+
+if [ ! -d "$SYSTEM_NSQ_DIR" ]; then
+  SYSTEM_NSQ_DIR="${OPENSHIFT_DATA_DIR}/nsq-0.3.5"
+  rm -fr "${SYSTEM_NSQ_DIR}*"
+  pushd "${OPENSHIFT_DATA_DIR}"
+  wget "https://s3.amazonaws.com/bitly-downloads/nsq/nsq-0.3.5.linux-amd64.go1.4.2.tar.gz"
+  tar xvzf ${OPENSHIFT_DATA_DIR}/nsq-0.3.5.linux-amd64.go1.4.2.tar.gz
+  rm -f ${OPENSHIFT_DATA_DIR}/nsq-0.3.5.linux-amd64.go1.4.2.tar.gz
+  ln -s ${OPENSHIFT_DATA_DIR}/nsq-0.3.5.linux-amd64.go1.4.2 ${OPENSHIFT_DATA_DIR}/nsq-0.3.5
+  popd
 fi
+
+
