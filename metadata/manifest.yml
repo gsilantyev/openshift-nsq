@@ -1,4 +1,4 @@
-Name: NSQ
+Name: nsq
 Description: "NSQ is a realtime distributed messaging platform designed to operate at scale, handling billions of messages per day."
 Version: '0.3.5'
 Cartridge-Version: 0.3.5
