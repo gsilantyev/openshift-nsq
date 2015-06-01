@@ -1,9 +1,9 @@
 Name: NSQ
 Description: "NSQ is a realtime distributed messaging platform designed to operate at scale, handling billions of messages per day."
 Version: '0.3.5'
-Cartridge-Version: '0.3.5'
+Cartridge-Version: 0.3.5
 Cartridge-Vendor: griddynamics
-Cartridge-Short-Name: nsq
+Cartridge-Short-Name: NSQ
 Website: http://nsq.io
 License-Url: https://raw.githubusercontent.com/bitly/nsq/master/LICENSE
 Scaling:
