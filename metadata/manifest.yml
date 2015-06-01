@@ -7,6 +7,9 @@ Cartridge-Short-Name: NSQTEST
 Website: http://nsq.io
 License-Url: https://raw.githubusercontent.com/bitly/nsq/master/LICENSE
 Source-Url: https://github.com/gsilantyev/openshift-nsq.git
+Categories:
+    - service
+    - nsq
 Scaling:
   Min: 1
   Max: -1
