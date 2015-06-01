@@ -6,6 +6,7 @@ Cartridge-Vendor: griddynamics
 Cartridge-Short-Name: NSQTEST
 Website: http://nsq.io
 License-Url: https://raw.githubusercontent.com/bitly/nsq/master/LICENSE
+Source-Url: https://github.com/gsilantyev/openshift-nsq.git
 Scaling:
   Min: 1
   Max: -1
