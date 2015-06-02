@@ -4,5 +4,26 @@ set -e
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 #source ${OPENSHIFT_NSQ_DIR}/bin/util
 
-cd ${OPENSHIFT_DATA_DIR}/nsq-0.3.5/bin
-./nsqlookupd && nsqd --lookupd-tcp-address=127.0.0.1:4160 && nsqadmin --lookupd-http-address=127.0.0.1:4161 && curl -d 'hello world 1' 'http://127.0.0.1:4151/put?topic=test' && nsq_to_file --topic=test --output-dir=/tmp --lookupd-http-address=127.0.0.1:4161
+if ! [ $# -eq 1 ]
+then
+    echo "Usage: \$0 [start|restart|stop]"
+    exit 1
+fi
+case "$1" in
+    start)
+	echo "all good"
+	cd ${OPENSHIFT_DATA_DIR}/nsq-0.3.5/bin
+	./nsqlookupd & \
+	./nsqd --lookupd-tcp-address=127.0.0.1:4160 & \
+	./nsqadmin --lookupd-http-address=127.0.0.1:4161 & \
+	curl -d 'hello world 1' 'http://127.0.0.1:4151/put?topic=test' & \
+	./nsq_to_file --topic=test --output-dir=/tmp --lookupd-http-address=127.0.0.1:4161 & \
+	exit 0
+    ;;
+    restart)
+        exit 0
+    ;;
+    stop)
+        exit 0
+    ;;
+esac
