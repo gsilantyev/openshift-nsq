@@ -14,10 +14,10 @@ case "$1" in
 	echo "all good"
 	cd ${OPENSHIFT_DATA_DIR}/nsq-0.3.5/bin
 	./nsqlookupd & \
-	./nsqd --lookupd-tcp-address=127.0.0.1:4160 & \
-	./nsqadmin --lookupd-http-address=127.0.0.1:4161 & \
-	curl -d 'hello world 1' 'http://127.0.0.1:4151/put?topic=test' & \
-	./nsq_to_file --topic=test --output-dir=/tmp --lookupd-http-address=127.0.0.1:4161 & \
+	./nsqd --lookupd-tcp-address=$OPENSHIFT_NSQTEST_IP1:4160 & \
+	./nsqadmin --lookupd-http-address=$OPENSHIFT_NSQTEST_IP1:4161 & \
+	curl -d 'hello world 1' 'http://'+$OPENSHIFT_NSQTEST_IP1+':4151/put?topic=test' & \
+	./nsq_to_file --topic=test --output-dir=/tmp --lookupd-http-address=$OPENSHIFT_NSQTEST_IP1:4161 & \
 	exit 0
     ;;
     restart)
